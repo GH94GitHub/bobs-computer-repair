@@ -18,6 +18,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv").config();
 
 /**
  * Routes
@@ -45,8 +46,7 @@ app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 const port = process.env.PORT || 3000; // server port
 
 
-const conn =
-  "mongodb+srv://tony:Spike%251994@cluster0.pasvdtz.mongodb.net/bcrs?retryWrites=true&w=majority&appName=Cluster0";
+const conn = process.env.DB_CONN_STR || "";
 
 /**
  * Database connection
