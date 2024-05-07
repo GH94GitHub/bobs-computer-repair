@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
       .exec(function (err, users) {
         // if there is an error
         if (err) {
-          console.log(err); // log the error
+          console.error(err); // log the error
           // return an error response
           const findAllMongodbErrorResponse = new ErrorResponse(
             500,
@@ -43,7 +43,6 @@ router.get("/", async (req, res) => {
           res.status(500).send(findAllMongodbErrorResponse.toObject());
           // if there is no error
         } else {
-          console.log(users); // log the users
           // return a success response
           const findAllUsersResponse = new BaseResponse(
             200,
@@ -75,7 +74,7 @@ router.get("/:id", async (req, res) => {
     User.findOne({ _id: req.params.id }, function (err, user) {
       // if there is an error
       if (err) {
-        console.log(err); // log the error
+        console.error(err); // log the error
         // return an error response
         const findByIdMongodbErrorResponse = new ErrorResponse(
           500,
@@ -86,7 +85,6 @@ router.get("/:id", async (req, res) => {
         res.status(500).send(findByIdMongodbErrorResponse.toObject());
         // if there is no error
       } else {
-        console.log(user); // log the user
         // return a success response
         const findByIdResponse = new BaseResponse(
           200,
@@ -99,7 +97,7 @@ router.get("/:id", async (req, res) => {
     });
     // if there is an error
   } catch (e) {
-    console.log(e); // log the error
+    console.error(e); // log the error
     // return an error response
     const findByIdCatchErrorResponse = new ErrorResponse(
       500,
@@ -139,7 +137,7 @@ router.post("/", async (req, res) => {
     User.findOne({ userName: req.body.userName }, function (err, user) {
       // if there is an error
       if (err) {
-        console.log(err); // log the error
+        console.error(err); // log the error
         // return an error response
         const createMongodbErrorResponse = new ErrorResponse(
           500,
@@ -166,7 +164,7 @@ router.post("/", async (req, res) => {
           User.create(newUser, function (err, user) {
             // if there is an error
             if (err) {
-              console.log(err); // log the error
+              console.error(err); // log the error
               // return an error response
               const createMongodbErrorResponse = new ErrorResponse(
                 500,
@@ -177,7 +175,6 @@ router.post("/", async (req, res) => {
               res.status(500).send(createMongodbErrorResponse.toObject());
               // if there is no error
             } else {
-              console.log(user); // log the user
               // return a success response
               const createUserResponse = new BaseResponse(
                 201,
@@ -194,7 +191,7 @@ router.post("/", async (req, res) => {
 
     // if there is an error
   } catch (e) {
-    console.log(e); // log the error
+    console.error(e); // log the error
     // return an error response
     const createUserCatchErrorResponse = new ErrorResponse(
       500,
@@ -215,7 +212,7 @@ router.put("/:id", async (req, res) => {
     User.findOne({ _id: req.params.id }, function (err, user) {
       // if there is an error
       if (err) {
-        console.log(err); // log the error
+        console.error(err); // log the error
         // return an error response
         const updateUserMongodbErrorResponse = new ErrorResponse(
           500,
@@ -226,7 +223,6 @@ router.put("/:id", async (req, res) => {
         res.status(500).send(updateUserMongodbErrorResponse.toObject());
         // if there is no error
       } else {
-        console.log(user); // log the user
         // update the user
         user.set({
           firstName: req.body.firstName,
@@ -245,7 +241,7 @@ router.put("/:id", async (req, res) => {
         user.save(function (err, savedUser) {
           // if there is an error
           if (err) {
-            console.log(err); // log the error
+            console.error(err); // log the error
             // return an error response
             const saveUserMongodbErrorResponse = new ErrorResponse(
               500,
@@ -256,7 +252,6 @@ router.put("/:id", async (req, res) => {
             res.status(500).send(saveUserMongodbErrorResponse.toObject());
             // if there is no error
           } else {
-            console.log(savedUser); // log the user
             // return a success response
             const saveUserResponse = new BaseResponse(
               200,
@@ -271,7 +266,7 @@ router.put("/:id", async (req, res) => {
     });
     // if there is an error
   } catch (e) {
-    console.log(e); // log the error
+    console.error(e); // log the error
     // return an error response
     const updateUserCatchErrorResponse = new ErrorResponse(
       500,
@@ -292,7 +287,7 @@ router.delete("/:id", async (req, res) => {
     User.findOne({ _id: req.params.id }, function (err, user) {
       // if there is an error
       if (err) {
-        console.log(err); // log the error
+        console.error(err); // log the error
         // return an error response
         const deleteUserMongodbErrorResponse = new ErrorResponse(
           500,
@@ -303,7 +298,6 @@ router.delete("/:id", async (req, res) => {
         res.status(500).send(deleteUserMongodbErrorResponse.toObject());
         // if there is no error
       } else {
-        console.log(user); // log the user
         // delete the user (set as disabled)
         user.set({
           isDisabled: true,
@@ -312,7 +306,7 @@ router.delete("/:id", async (req, res) => {
         user.save(function (err, savedUser) {
           // if there is an error
           if (err) {
-            console.log(err); // log the error
+            console.error(err); // log the error
             // return an error response
             const savedUserMongodbErrorResponse = new ErrorResponse(
               500,
@@ -323,7 +317,6 @@ router.delete("/:id", async (req, res) => {
             res.status(500).send(savedUserMongodbErrorResponse.toObject());
             // if there is no error
           } else {
-            console.log(savedUser); // log the user
             // return a success response
             const savedUserResponse = new BaseResponse(
               200,
@@ -338,7 +331,7 @@ router.delete("/:id", async (req, res) => {
     });
     // if there is an error
   } catch (e) {
-    console.log(e); // log the error
+    console.error(e); // log the error
     // return an error response
     const deleteUserCatchErrorResponse = new ErrorResponse(
       500,
@@ -358,7 +351,7 @@ router.get("/:userName/security-questions", async (req, res) => {
     User.findOne({ userName: req.params.userName }, function (err, user) {
       // handle mongoDB error
       if (err) {
-        console.log(err);
+        console.error(err);
         const findSelectedSecurityQuestionsMongodbErrorResponse =
           new ErrorResponse("500", "Internal server error", err);
         res
@@ -366,7 +359,6 @@ router.get("/:userName/security-questions", async (req, res) => {
           .send(findSelectedSecurityQuestionsMongodbErrorResponse.toObject());
       } else {
         // user object matching params id
-        console.log(user);
         const findSelectedSecurityQuestionsResponse = new BaseResponse(
           "200",
           "Query successful",
@@ -377,7 +369,7 @@ router.get("/:userName/security-questions", async (req, res) => {
     });
   } catch (e) {
     // Server error
-    console.log(e);
+    console.error(e);
     const findSelectedSecurityQuestionsCatchErrorResponse = new ErrorResponse(
       "500",
       "Internal server error",
@@ -399,7 +391,7 @@ router.get("/:userName/role", async (req, res) => {
     User.findOne({ userName: req.params.userName }, function (err, user) {
       if (err) {
         // handle mongoDB error
-        console.log(err); // log the error
+        console.error(err); // log the error
         // return an error response
         const findUserRoleMongodbErrorResponse = new ErrorResponse(
           "500",
@@ -409,9 +401,7 @@ router.get("/:userName/role", async (req, res) => {
         // send the error response
         res.status(500).send(findUserRoleMongodbErrorResponse.toObject());
       } else {
-        // if there is no error
-        console.log(user); // log the user
-        // return a success response
+        // if there is no error return a success response
         const findUserRoleResponse = new BaseResponse(
           "200",
           "Query successful",
@@ -423,7 +413,7 @@ router.get("/:userName/role", async (req, res) => {
     });
   } catch (e) {
     // handle server error
-    console.log(e); // log the error
+    console.error(e); // log the error
     // return an error response
     const findUserRoleCatchErrorResponse = new ErrorResponse(
       "500",

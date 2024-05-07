@@ -61,7 +61,7 @@ mongoose
     console.debug(`Connection to the database instance was successful`);
   })
   .catch((err) => {
-    console.log(`MongoDB Error: ${err.message}`);
+    console.error(`MongoDB Error: ${err.message}`);
   }); // end mongoose connection
 
 /**

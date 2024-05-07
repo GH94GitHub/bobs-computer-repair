@@ -28,13 +28,12 @@ router.get('/', async( req, res) =>{
     {
       if (err)
       {
-        console.log(err);
+        console.error(err);
         const findAllMongodbErrorResponse = new ErrorResponse(500, 'Internal Server Error', err);
         res.status(500).send(findAllMongodbErrorResponse.toObject());
       }
       else
       {
-        console.log(securityQuestions);
         const findAllResponse = new BaseResponse(200, 'Query Successful', securityQuestions);
         res.json(findAllResponse.toObject());
       }
@@ -42,7 +41,7 @@ router.get('/', async( req, res) =>{
   }
   catch (e)
   {
-    console.log(e);
+    console.error(e);
     const findAllCatchErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
     res.status(500).send(findAllCatchErrorResponse.toObject());
   }
@@ -58,13 +57,12 @@ router.get('/:id', async(req, res)=> {
     SecurityQuestion.findOne({'_id': req.params.id}, function(err, securityQuestion){
       if(err)
       {
-        console.log(err);
+        console.error(err);
         const findByIdMongodbErrorResponse = new ErrorResponse(500, 'Internal Server Error', err);
         res.status(500).send(findByIdMongodbErrorResponse.toObject());
       }
       else
       {
-        console.log(securityQuestion);
         const findByIdResponse = new BaseResponse(200, 'Query Successful', securityQuestion);
         res.json(findByIdResponse.toObject());
       }
@@ -72,7 +70,7 @@ router.get('/:id', async(req, res)=> {
   }
   catch(e)
   {
-    console.log(e);
+    console.error(e);
     const findByIdCatchErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
     res.status(500).send(findByIdCatchErrorResponse.toObject());
   }
@@ -92,13 +90,12 @@ router.post('/', async(req, res)=>{
     SecurityQuestion.create(newSecurityQuestion, function(err, securityQuestion){
       if (err)
       {
-        console.log(err);
+        console.error(err);
         const createSecurityQuestionMongodbErrorResponse =  new ErrorResponse(500, 'Internal Server Error', err);
         res.status(500).send(createSecurityQuestionMongodbErrorResponse.toObject());
       }
       else
       {
-        console.log(securityQuestion);
         const createSecurityQuestionResponse = new BaseResponse(200, 'Query Successful', securityQuestion);
         res.json(createSecurityQuestionResponse.toObject());
       }
@@ -106,7 +103,7 @@ router.post('/', async(req, res)=>{
   }
   catch(e)
   {
-    console.log(e);
+    console.error(e);
     const createSecurityQuestionCatchErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
     res.status(500).send(createSecurityQuestionCatchErrorResponse.toObject());
   }
@@ -122,13 +119,11 @@ router.put('/:id', async(req, res) => {
     SecurityQuestion.findOne({'_id': req.params.id}, function(err, securityQuestion){
       if(err)
       {
-        console.log(err);
+        console.error(err);
         const updateSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
         res.status(500).send(updateSecurityQuestionMongodbErrorResponse.toObject());
       }
       else{
-        console.log(securityQuestion);
-
         securityQuestion.set({
           text: req.body.text
         });
@@ -136,13 +131,12 @@ router.put('/:id', async(req, res) => {
         securityQuestion.save(function( err, savedSecurityQuestion){
           if(err)
           {
-            console.log(err);
+            console.error(err);
             const savedSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
             res.status(500).send(savedSecurityQuestionMongodbErrorResponse.toObject());
           }
           else
           {
-            console.log(savedSecurityQuestion);
             const updateSecurityQuestionResponse = new BaseResponse(200, 'Query successful', savedSecurityQuestion);
             res.json(updateSecurityQuestionResponse.toObject());
           }
@@ -152,7 +146,7 @@ router.put('/:id', async(req, res) => {
   }
   catch (e)
   {
-    console.log(e);
+    console.error(e);
     const updateSecurityQuestionCatchErrorResponse = new ErrorResponse(500, 'Internal Server error', e.message);
     res.status(500).send(updateSecurityQuestionCatchErrorResponse.toObject());
   }
@@ -168,14 +162,12 @@ router.delete('/:id', async (req, res)=>{
     SecurityQuestion.findOne({'_id': req.params.id}, function(err, securityQuestion){
       if (err)
       {
-        console.log(err);
+        console.error(err);
         const deleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal Server Error', err);
         res.status(500).send(deleteSecurityQuestionMongodbErrorResponse.toObject());
       }
       else
       {
-        console.log(securityQuestion);
-
         securityQuestion.set({
           isDisabled: true
         });
@@ -183,13 +175,12 @@ router.delete('/:id', async (req, res)=>{
         securityQuestion.save(function (err, savedSecurityQuestion){
           if (err)
           {
-            console.log(err);
+            console.error(err);
             const savedSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal Server Error', err );
             res.status(500).send(savedSecurityQuestionMongodbErrorResponse.toObject());
           }
           else
           {
-            console.log(savedSecurityQuestion);
             const deleteSecurityQuestionResponse = new BaseResponse(200, 'Query Successful', savedSecurityQuestion);
             res.json(deleteSecurityQuestionResponse.toObject());
           }
@@ -199,7 +190,7 @@ router.delete('/:id', async (req, res)=>{
   }
   catch (e)
   {
-    console.log(e);
+    console.error(e);
     const deleteSecurityQuestionCatchErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message)
     res.status(500).send(deleteSecurityQuestionCatchErrorResponse.toObject());
   }

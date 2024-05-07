@@ -36,8 +36,6 @@ router.post('/:userName', async ( req, res ) => {
       }
       // Query went through
       else {
-        console.log(invoice);
-
         //Send back created invoice
         const createdInvoiceResponse = new BaseResponse("201", "Invoice Created", invoice);
         res.status(201).send(createdInvoiceResponse.toObject());
@@ -45,7 +43,7 @@ router.post('/:userName', async ( req, res ) => {
     });
   }
   catch(e) {
-    console.log(e)
+    console.error(e)
     // Send 500 ErrorResponse
     const createInvoiceCatchErrorResponse = new ErrorResponse("500", "Internal Server Error", e.message);
     res.status(500).send(createInvoiceCatchErrorResponse.toObject());
@@ -82,7 +80,7 @@ router.get("/purchases-graph", async (req, res) => {
       ],
       function (err, purchaseGraph) {
         if (err) {
-          console.log(err);
+          console.error(err);
           const findPurchasesByServiceGraphMongodbErrorResponse = new ErrorResponse(
             "500",
             "Internal Server error",
@@ -92,7 +90,6 @@ router.get("/purchases-graph", async (req, res) => {
             .status(500)
             .send(findPurchasesByServiceGraphMongodbErrorResponse.toObject());
         } else {
-          console.log(purchaseGraph);
           const findPurchasesByServiceGraphResponse = new BaseResponse(
             "200",
             "Query successful",
@@ -103,7 +100,7 @@ router.get("/purchases-graph", async (req, res) => {
       }
     );
   } catch (e) {
-    console.log(e);
+    console.error(e);
     const findPurchaseByServiceCatchErrorResponse = new ErrorResponse(
       "500",
       "Internal server error",

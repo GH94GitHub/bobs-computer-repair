@@ -28,7 +28,7 @@ router.post("/signin", async (req, res) => {
     User.findOne({ userName: req.body.userName }, (err, user) => {
       // Server error
       if (err) {
-        console.log(err);
+        console.error(err);
 
         // Send 500 Response: 'Internal Server Error'
         const authenticateError = new ErrorResponse(
@@ -88,7 +88,7 @@ router.post("/signin", async (req, res) => {
       }
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
 
     // Send 500 response & ErrorResponse: 'Internal Server Error'
     const authenticateCatchErrorResponse = new ErrorResponse(
@@ -111,7 +111,7 @@ router.get("/verify/users/:userName", async (req, res) => {
     User.findOne({ userName: req.params.userName }, function (err, user) {
       // Error processing query
       if (err) {
-        console.log(err);
+        console.error(err);
         const verifyUserMongodbErrorResponse = new ErrorResponse(
           "500",
           "Internal service error",
@@ -132,7 +132,6 @@ router.get("/verify/users/:userName", async (req, res) => {
         }
         // User exists
         else {
-          console.log(user);
           const userVerifiedResponse = new BaseResponse(
             "200",
             "User verified",
@@ -143,7 +142,7 @@ router.get("/verify/users/:userName", async (req, res) => {
       }
     });
   } catch (e) {
-    console.log(e.message);
+    console.error(e.message);
     const verifyUserCatchResponse = new ErrorResponse(
       "500",
       "Internal service error",
@@ -162,7 +161,7 @@ router.post("/verify/users/:userName/security-questions", async (req, res) => {
     User.findOne({ userName: req.params.userName }, function (err, user) {
       // Server error
       if (err) {
-        console.log(err); // Log error to console
+        console.error(err); // Log error to console
         // Send 500 response & ErrorResponse: 'Internal Server Error'
         const verifySecurityQuestionsMongodbErrorResponse = new ErrorResponse(
           "500",
@@ -174,8 +173,6 @@ router.post("/verify/users/:userName/security-questions", async (req, res) => {
           .send(verifySecurityQuestionsMongodbErrorResponse.toObject());
         // Query went through
       } else {
-        console.log(user); // Log user to console
-
         // find security questions
         const selectedSecurityQuestionOne = user.selectedSecurityQuestions.find(
           (q) => q.questionText === req.body.questionText1
@@ -203,7 +200,7 @@ router.post("/verify/users/:userName/security-questions", async (req, res) => {
 
         // if all answers match
         if (isValidAnswerOne && isValidAnswerTwo && isValidAnswerThree) {
-          console.log(
+          console.info(
             `User ${user.userName} answered their security questions correctly`
           );
           // send base response with 200 status
@@ -215,10 +212,6 @@ router.post("/verify/users/:userName/security-questions", async (req, res) => {
           res.json(validSecurityQuestionsResponse.toObject());
           // if answers do not match
         } else {
-          // log message to console
-          console.log(
-            `User ${user.userName} did not answer their security questions correctly`
-          );
           // send base response with 200 status
           const invalidSecurityQuestionsResponse = new BaseResponse(
             "200",
@@ -231,7 +224,7 @@ router.post("/verify/users/:userName/security-questions", async (req, res) => {
     });
     // catch error
   } catch (e) {
-    console.log(e); // log error to console
+    console.error(e); // log error to console
     // send 500 response & ErrorResponse: 'Internal Server Error'
     const verifySecurityQuestionsCatchErrorResponse = new ErrorResponse(
       "500",
@@ -254,7 +247,7 @@ router.post("/users/:userName/reset-password", async (req, res) => {
     User.findOne({ userName: req.params.userName }, function (err, user) {
       // Server error
       if (err) {
-        console.log(err); // Log error to console
+        console.error(err); // Log error to console
         // Send 500 response & ErrorResponse: 'Internal Server Error'
         const resetPasswordMongodbErrorResponse = new ErrorResponse(
           "500",
@@ -264,7 +257,6 @@ router.post("/users/:userName/reset-password", async (req, res) => {
         res.status(500).send(resetPasswordMongodbErrorResponse.toObject());
         // if user is found
       } else {
-        console.log(user); // Log user to console
 
         let hashedPassword = bcrypt.hashSync(password, saltRounds); // salt/hash the password
         // update user password
@@ -275,7 +267,7 @@ router.post("/users/:userName/reset-password", async (req, res) => {
         user.save(function (err, updatedUser) {
           // Server error
           if (err) {
-            console.log(err); // Log error to console
+            console.error(err); // Log error to console
             // Send 500 response & ErrorResponse: 'Internal Server Error'
             const updatedUserMongodbErrorResponse = new ErrorResponse(
               "500",
@@ -285,7 +277,6 @@ router.post("/users/:userName/reset-password", async (req, res) => {
             res.status(500).send(updatedUserMongodbErrorResponse.toObject());
             // if user is found
           } else {
-            console.log(updatedUser); // Log user to console
             // send base response with 200 status
             const updatedPasswordResponse = new BaseResponse(
               "200",
@@ -299,7 +290,7 @@ router.post("/users/:userName/reset-password", async (req, res) => {
     });
     // catch error
   } catch (e) {
-    console.log(e); // log error to console
+    console.error(e); // log error to console
     const resetPasswordCatchError = new ErrorResponse(
       "500",
       "Internal server error",
@@ -338,7 +329,7 @@ router.post("/register", async (req, res) => {
     User.findOne({ userName: req.body.userName }, function (err, user) {
       // if there is an error
       if (err) {
-        console.log(err); // log the error
+        console.error(err); // log the error
         // return an error response
         const createMongodbErrorResponse = new ErrorResponse(
           500,
@@ -365,7 +356,7 @@ router.post("/register", async (req, res) => {
           User.create(registeredUser, function (err, user) {
             // if there is an error
             if (err) {
-              console.log(err); // log the error
+              console.error(err); // log the error
               // return an error response
               const createMongodbErrorResponse = new ErrorResponse(
                 500,
@@ -376,7 +367,6 @@ router.post("/register", async (req, res) => {
               res.status(500).send(createMongodbErrorResponse.toObject());
               // if there is no error
             } else {
-              console.log(user); // log the user
               // return a success response
               const createUserResponse = new BaseResponse(
                 201,
@@ -393,7 +383,7 @@ router.post("/register", async (req, res) => {
 
     // if there is an error
   } catch (e) {
-    console.log(e); // log the error
+    console.error(e); // log the error
     // return an error response
     const createUserCatchErrorResponse = new ErrorResponse(
       500,
