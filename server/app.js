@@ -2,7 +2,7 @@
 ==========================================
 ; Title: app.js
 ; Author: Professor Krasso
-; Modified by: Kevin Jones
+; Modified by: George Henderson, Kevin Jones
 ; Date: 16 Sep 2021
 ; Description: App file for the server
 ; ========================================
