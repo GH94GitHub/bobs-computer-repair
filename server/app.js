@@ -46,7 +46,7 @@ app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 const port = process.env.PORT || 3000; // server port
 
 
-const conn = process.env.DB_CONN_STR || "";
+const conn = process.env.BCRS_DB_CONN || "";
 
 /**
  * Database connection
