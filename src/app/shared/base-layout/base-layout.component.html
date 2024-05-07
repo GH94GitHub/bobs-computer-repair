@@ -48,38 +48,38 @@
                 style="color: #008000; font-weight: 400; font-size: large"
                 >{{ username }}</span
               >
-              <span *ngIf="isAdmin()" style="font-weight: 400; color: #008000">
-                [{{ userRole.role }}]</span
+              <span *ngIf="isAdmin" style="font-weight: 400; color: #008000">
+                [{{ userRole }}]</span
               >
             </p>
             <mat-divider></mat-divider>
 
             <button
-              *ngIf="isAdmin()"
+              *ngIf="isAdmin"
               mat-menu-item
               [matMenuTriggerFor]="users"
             >
               <mat-icon>fingerprint</mat-icon>Configurations
             </button>
             <mat-menu #users="matMenu">
-              <button  *ngIf="isAdmin()" routerLink="/users" mat-menu-item>
+              <button  *ngIf="isAdmin" routerLink="/users" mat-menu-item>
                 <mat-icon>perm_identity</mat-icon>Users
               </button>
 
               <button
-                *ngIf="isAdmin()"
+                *ngIf="isAdmin"
                 mat-menu-item
                 routerLink="/security-questions"
               >
                 <mat-icon>question_answer</mat-icon>
                 Security Questions
               </button>
-              <button *ngIf="isAdmin()" routerLink="/roles" mat-menu-item>
+              <button *ngIf="isAdmin" routerLink="/roles" mat-menu-item>
                 <mat-icon>security</mat-icon>Roles
               </button>
             </mat-menu>
             <button
-              *ngIf="isAdmin()"
+              *ngIf="isAdmin"
               mat-menu-item
               routerLink="/purchases-by-service-graph"
             >
@@ -111,7 +111,7 @@
         <p>
           &copy; {{ year | date: "yyyy" }} - Bob's Computer Repair Shop -
           <a
-            href="https://github.com/joneskj55/bcrs"
+            href="https://github.com/GH94GitHub/bobs-computer-repair"
             class="bu-link"
             target="_blank"
             >House Gryffindor</a
