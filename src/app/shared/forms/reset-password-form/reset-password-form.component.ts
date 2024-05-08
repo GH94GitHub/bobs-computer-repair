@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-reset-password-form',
@@ -54,7 +55,7 @@ export class ResetPasswordFormComponent implements OnInit {
   resetPassword() {
     // get the password from the form
     this.http
-      .post('/api/session/users/' + this.username + '/reset-password', {
+      .post(`${ApiService.API_HOST}/bcrs/session/users/${this.username}/reset-password`, {
         password: this.form.controls['password'].value,
       })
       // if successful, redirect to the login page

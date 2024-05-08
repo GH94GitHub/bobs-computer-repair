@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Message } from 'primeng/api/message';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-verify-security-questions-form',
@@ -96,7 +97,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
     // Check if the answers match the users answers
     this.http
       .post(
-        '/api/session/verify/users/' + this.username + '/security-questions',
+        `${ApiService.API_HOST}/bcrs/session/verify/users/${this.username}/security-questions`,
         {
           questionText1: this.question1,
           questionText2: this.question2,

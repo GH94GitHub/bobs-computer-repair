@@ -12,6 +12,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Message } from 'primeng/api/message';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -61,7 +62,7 @@ export class SignInComponent implements OnInit {
 
     // Authenticate User
     this.http
-      .post('/api/session/signin', {
+      .post(`${ApiService.API_HOST}/bcrs/session/signin`, {
         userName,
         password,
       })

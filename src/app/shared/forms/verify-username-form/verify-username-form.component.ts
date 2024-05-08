@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Message } from 'primeng/api/message';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-verify-username-form',
@@ -41,7 +42,7 @@ export class VerifyUsernameFormComponent implements OnInit {
     const username = this.form.controls['username'].value;
 
     // Send the username to the server
-    this.http.get('/api/session/verify/users/' + username).subscribe(
+    this.http.get(`${ApiService.API_HOST}/bcrs/session/verify/users/${username}`).subscribe(
       (res) => {
         console.log(res);
         // If the username is valid, redirect to the password page

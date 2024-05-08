@@ -20,6 +20,7 @@ import { InvoiceDialogComponent } from '../..//shared/invoice-dialog/invoice-dia
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { PrintInvoiceDialogComponent } from 'src/app/shared/print-invoice-dialog/print-invoice-dialog.component';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -130,7 +131,7 @@ export class HomeComponent implements OnInit {
   placeOrder() {
 
     // Add invoice to database
-    this.http.post('/api/invoices/' + this.cookieService.get('session_user'), {
+    this.http.post(ApiService.API_HOST + '/bcrs/invoices/' + this.cookieService.get('session_user'), {
       lineItems: this.invoice.getLineItems(),
       partsAmount: this.invoice.partsAmount,
       laborAmount: this.invoice.getLaborAmount(),

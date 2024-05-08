@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { SecurityQuestionService } from '../../shared/services/security-question.service';
 import { Message } from 'primeng/api/message';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -121,7 +122,7 @@ export class RegisterComponent implements OnInit {
 
     // register POST request
     this.http
-      .post('/api/session/register', {
+      .post(`${ApiService.API_HOST}/bcrs/session/register`, {
         userName: credentials.userName,
         password: credentials.password,
         firstName: contact.firstName,
