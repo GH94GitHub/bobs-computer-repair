@@ -2,7 +2,7 @@
 ============================================
 ; Title:  user.service.ts
 ; Author: Professor Krasso
-; Modified by: Kevin Jones
+; Modified by: George Henderson, Kevin Jones
 ; Date: 17 Sep 2021
 ; Description: User service file
 ;===========================================
@@ -12,6 +12,7 @@ import { Injectable } from '@angular/core';
 import { User } from './../interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,17 +22,17 @@ export class UserService {
 
   // find all users in the database through the api
   findAllUsers(): Observable<any> {
-    return this.http.get('/api/users');
+    return this.http.get(`${ApiService.API_HOST}/api/users`);
   }
 
   // find all users by id in the database through the api
   findUserById(userId: string): Observable<any> {
-    return this.http.get('/api/users/' + userId);
+    return this.http.get(`${ApiService.API_HOST}/api/users/${userId}`);
   }
 
   // create a new user
   createUser(user: User): Observable<any> {
-    return this.http.post('/api/users/', {
+    return this.http.post(`${ApiService.API_HOST}/api/users/`, {
       userName: user.userName,
       password: user.password,
       firstName: user.firstName,
@@ -45,7 +46,7 @@ export class UserService {
 
   // update a user
   updateUser(userId: string, user: User): Observable<any> {
-    return this.http.put('/api/users/' + userId, {
+    return this.http.put(`${ApiService.API_HOST}/api/users/${userId}`, {
       firstName: user.firstName,
       lastName: user.lastName,
       phoneNumber: user.phoneNumber,
@@ -57,6 +58,6 @@ export class UserService {
 
   // delete a user
   deleteUser(userId: string): Observable<any> {
-    return this.http.delete('/api/users/' + userId);
+    return this.http.delete(`${ApiService.API_HOST}/api/users/${userId}`);
   }
 }
