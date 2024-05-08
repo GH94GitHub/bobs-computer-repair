@@ -67,11 +67,11 @@ mongoose
 /**
  * API(s) go here...
  */
-app.use("/api/users", UserApi);
-app.use("/api/security-questions", SecurityQuestionApi);
-app.use("/api/session", SessionApi);
-app.use("/api/invoices", InvoiceApi);
-app.use("/api/roles", RoleApi);
+app.use("/bcrs/users", UserApi);
+app.use("/bcrs/security-questions", SecurityQuestionApi);
+app.use("/bcrs/session", SessionApi);
+app.use("/bcrs/invoices", InvoiceApi);
+app.use("/bcrs/roles", RoleApi);
 
 /**
  * Create and start server

@@ -122,7 +122,7 @@ export class RegisterComponent implements OnInit {
 
     // register POST request
     this.http
-      .post(`${ApiService.API_HOST}/bcrs/session/register`, {
+      .post(`http://${ApiService.API_HOST}/bcrs/session/register`, {
         userName: credentials.userName,
         password: credentials.password,
         firstName: contact.firstName,

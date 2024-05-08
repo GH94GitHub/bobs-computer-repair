@@ -22,7 +22,7 @@ export class InvoiceService {
 
   // post invoice to the database
   createInvoice(userName: string, invoice: Invoice): Observable<any> {
-    return this.http.post(`${ApiService.API_HOST}/bcrs/invoices/${userName}`, {
+    return this.http.post(`http://${ApiService.API_HOST}/bcrs/invoices/${userName}`, {
       userName: userName,
       lineItems: invoice.getLineItems(),
       partsAmount: invoice.partsAmount,
@@ -34,6 +34,6 @@ export class InvoiceService {
 
   // route to the graph
   findPurchasesByServiceGraph(): Observable<any> {
-    return this.http.get(`${ApiService.API_HOST}/bcrs/invoices/purchases-graph`);
+    return this.http.get(`http://${ApiService.API_HOST}/bcrs/invoices/purchases-graph`);
   }
 }

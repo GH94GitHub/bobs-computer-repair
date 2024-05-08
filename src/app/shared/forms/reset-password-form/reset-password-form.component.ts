@@ -55,7 +55,7 @@ export class ResetPasswordFormComponent implements OnInit {
   resetPassword() {
     // get the password from the form
     this.http
-      .post(`${ApiService.API_HOST}/bcrs/session/users/${this.username}/reset-password`, {
+      .post(`http://${ApiService.API_HOST}/bcrs/session/users/${this.username}/reset-password`, {
         password: this.form.controls['password'].value,
       })
       // if successful, redirect to the login page
