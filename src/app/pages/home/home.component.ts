@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
   placeOrder() {
 
     // Add invoice to database
-    this.http.post(ApiService.API_HOST + '/bcrs/invoices/' + this.cookieService.get('session_user'), {
+    this.http.post(`https://${ApiService.API_HOST}/bcrs/invoices/` + this.cookieService.get('session_user'), {
       lineItems: this.invoice.getLineItems(),
       partsAmount: this.invoice.partsAmount,
       laborAmount: this.invoice.getLaborAmount(),
