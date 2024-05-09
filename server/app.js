@@ -35,7 +35,6 @@ const RoleApi = require("./routes/role-api");
  */
 let app = express();
 
-
 app.use(compression()); // compress all responses
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
