@@ -19,6 +19,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 
 /**
  * Routes
@@ -33,6 +34,8 @@ const RoleApi = require("./routes/role-api");
  * App configurations
  */
 let app = express();
+
+app.use(cors({ origin: 'bcrs.george-henderson.com'}));
 app.use(compression()); // compress all responses
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
