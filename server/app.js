@@ -35,7 +35,7 @@ const RoleApi = require("./routes/role-api");
  */
 let app = express();
 
-app.use(cors());
+
 app.use(compression()); // compress all responses
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,6 +70,7 @@ mongoose
 /**
  * API(s) go here...
  */
+app.use(cors());
 app.use("/bcrs/users", UserApi);
 app.use("/bcrs/security-questions", SecurityQuestionApi);
 app.use("/bcrs/session", SessionApi);
