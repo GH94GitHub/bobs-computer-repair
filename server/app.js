@@ -20,6 +20,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const cors = require("cors");
 
 /**
  * Routes
