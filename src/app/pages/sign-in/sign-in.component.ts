@@ -62,7 +62,7 @@ export class SignInComponent implements OnInit {
 
     // Authenticate User
     this.http
-      .post(`http://${ApiService.API_HOST}/bcrs/session/signin`, {
+      .post(`https://${ApiService.API_HOST}/bcrs/session/signin`, {
         userName,
         password,
       })

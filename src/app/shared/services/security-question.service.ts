@@ -19,26 +19,26 @@ export class SecurityQuestionService {
   constructor(private http: HttpClient) { }
 
   findAllSecurityQuestions(): Observable<any> {
-    return this.http.get(`http://${ApiService.API_HOST}/bcrs/security-questions`);
+    return this.http.get(`https://${ApiService.API_HOST}/bcrs/security-questions`);
   }
 
   findSecurityQuestionById(questionId: string): Observable<any>{
-    return this.http.get(`http://${ApiService.API_HOST}/bcrs/security-questions/${questionId}`);
+    return this.http.get(`https://${ApiService.API_HOST}/bcrs/security-questions/${questionId}`);
   }
 
   createSecurityQuestion(newSecurityQuestion: SecurityQuestion): Observable<any>{
-    return this.http.post(`http://${ApiService.API_HOST}/bcrs/security-questions`, {
+    return this.http.post(`https://${ApiService.API_HOST}/bcrs/security-questions`, {
       text: newSecurityQuestion.text
     })
   }
 
   updateSecurityQuestion(questionId: string, updatedSecurityQuestion: SecurityQuestion): Observable<any>{
-    return this.http.put(`http://${ApiService.API_HOST}/bcrs/security-questions/${questionId}`, {
+    return this.http.put(`https://${ApiService.API_HOST}/bcrs/security-questions/${questionId}`, {
       text: updatedSecurityQuestion.text
     })
   }
 
   deleteSecurityQuestion(questionId: string): Observable<any>{
-    return this.http.delete(`http://${ApiService.API_HOST}/bcrs/security-questions/${questionId}`);
+    return this.http.delete(`https://${ApiService.API_HOST}/bcrs/security-questions/${questionId}`);
   }
 }

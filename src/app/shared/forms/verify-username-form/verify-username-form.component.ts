@@ -42,7 +42,7 @@ export class VerifyUsernameFormComponent implements OnInit {
     const username = this.form.controls['username'].value;
 
     // Send the username to the server
-    this.http.get(`http://${ApiService.API_HOST}/bcrs/session/verify/users/${username}`).subscribe(
+    this.http.get(`https://${ApiService.API_HOST}/bcrs/session/verify/users/${username}`).subscribe(
       (res) => {
         console.log(res);
         // If the username is valid, redirect to the password page

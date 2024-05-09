@@ -97,7 +97,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
     // Check if the answers match the users answers
     this.http
       .post(
-        `http://${ApiService.API_HOST}/bcrs/session/verify/users/${this.username}/security-questions`,
+        `https://${ApiService.API_HOST}/bcrs/session/verify/users/${this.username}/security-questions`,
         {
           questionText1: this.question1,
           questionText2: this.question2,

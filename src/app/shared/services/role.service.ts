@@ -22,35 +22,35 @@ export class RoleService {
 
   // get all roles
   findAllRoles(): Observable<any> {
-    return this.http.get(`http://${ApiService.API_HOST}/bcrs/roles`);
+    return this.http.get(`https://${ApiService.API_HOST}/bcrs/roles`);
   }
 
   // get role by id
   findRoleById(roleId: string): Observable<any> {
-    return this.http.get(`http://${ApiService.API_HOST}/bcrs/roles/${roleId}`);
+    return this.http.get(`https://${ApiService.API_HOST}/bcrs/roles/${roleId}`);
   }
 
   // create new role
   createRole(role: Role): Observable<any> {
-    return this.http.post(`http://${ApiService.API_HOST}/bcrs/roles`, {
+    return this.http.post(`https://${ApiService.API_HOST}/bcrs/roles`, {
       text: role.text,
     });
   }
 
   // update role
   updateRole(roleId: string, role: Role): Observable<any> {
-    return this.http.put(`http://${ApiService.API_HOST}/bcrs/roles/${roleId}`, {
+    return this.http.put(`https://${ApiService.API_HOST}/bcrs/roles/${roleId}`, {
       text: role.text,
     });
   }
 
   // delete role
   deleteRole(roleId: string): Observable<any> {
-    return this.http.delete(`http://${ApiService.API_HOST}/bcrs/roles/${roleId}`);
+    return this.http.delete(`https://${ApiService.API_HOST}/bcrs/roles/${roleId}`);
   }
 
   // find user role by user id
   findUserRole(userName: string): Observable<any> {
-    return this.http.get(`http://${ApiService.API_HOST}/bcrs/users/${userName}/role`);
+    return this.http.get(`https://${ApiService.API_HOST}/bcrs/users/${userName}/role`);
   }
 }
