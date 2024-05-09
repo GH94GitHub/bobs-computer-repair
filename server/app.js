@@ -69,7 +69,9 @@ mongoose
 /**
  * API(s) go here...
  */
-app.use(cors());
+app.use(cors({
+  origin: "https://bcrs.george-henderson.com"
+}));
 app.use("/bcrs/users", UserApi);
 app.use("/bcrs/security-questions", SecurityQuestionApi);
 app.use("/bcrs/session", SessionApi);
